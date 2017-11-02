@@ -5,7 +5,7 @@
     <!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
     <title>Login -<?php echo $judul?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>" rel="stylesheet">
     <style type="text/css">
         .form-signin
 {
@@ -38,12 +38,14 @@
 .form-signin input[type="text"]
 {
     margin-bottom: -1px;
+    color:#000;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
 }
 .form-signin input[type="password"]
 {
     margin-bottom: 10px;
+    color:#000;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
@@ -83,8 +85,8 @@
     margin-top: 10px;
 }
     </style>
-    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url('assets/js/jquery.min.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/js/bootstrap.min.js'); ?>"></script>
 </head>
 <body>
 <div class="container">

@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class User extends Parent_controller {
+class User extends MY_Controller {
 
   var $parsing_form_input = array('id','username','password','email','id_pegawai','level');
   var $tablename = 'm_user';
@@ -17,8 +17,10 @@ class User extends Parent_controller {
     }
 
     public function index() {
-        $data['judul'] = $this->data['judul'];
-        $data['parse_view'] = 'user/user_view';
+   
+
+        $data['title'] = $this->data['meta_title'];
+        $data['content'] = 'user/user_view';
         $data['listing'] = $this->m_umanagement->list_user();
 
         //session
@@ -26,7 +28,7 @@ class User extends Parent_controller {
         $data['user_group'] = strtoupper(level_help($this->session->userdata('user_group')));
         $data['user_id'] = $this->session->userdata('user_id');
 
-        $this->load->view('template', $data);
+        $this->load->view('template_admin', $data);
     }
 
 
@@ -43,23 +45,27 @@ class User extends Parent_controller {
             //var_dump($data['parseform']);
 
           }
-          $data['judul'] = $this->data['judul'];
+          $data['title'] = $this->data['meta_title'];
           $data['opt_pegawai'] = $this->m_umanagement->opt_pegawai();
-          $data['parse_view'] = 'user/user_store';
-          //session
-          $data['username'] = $this->session->userdata('username');
-          $data['user_group'] = strtoupper(level_help($this->session->userdata('user_group')));
-          $data['user_id'] = $this->session->userdata('user_id');
-          $this->load->view('template', $data);
+          $data['content'] = 'user/user_store';
+          
+        //session
+        $data['username'] = $this->session->userdata('username');
+        $data['user_group'] = strtoupper(level_help($this->session->userdata('user_group')));
+        $data['user_id'] = $this->session->userdata('user_id');
+
+          $this->load->view('template_admin', $data);
     }
 
 
     public function save(){
 
-      $datapos = $this->m_umanagement->input_array($this->parsing_form_input);
-      $id = isset($datapos['id']) ? $datapos['id'] : '';
+      $datapos = $this->m_umanagement->array_from_post($this->parsing_form_input);
+    //   var_dump($datapos);
+	//   exit();
+	  $id = isset($datapos['id']) ? $datapos['id'] : '';
       $save = $this->m_umanagement->save_account($datapos,$id,$this->tablename);
-
+	  //echo $save;
       if($save){
         echo "<script language=javascript>
          alert('Simpan Data Berhasil');

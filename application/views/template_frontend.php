@@ -35,18 +35,35 @@
 delete it to see just the drop cap */
 
 </style>
+ 
 <script type="text/javascript">
  
   $(document).ready(function() {
-      var $lightbox = $('#lightbox');
-      $('.thumbnail').click(function(){
-      $('.modal-body').empty();
-  	var title = $(this).parent('a').attr("title");
+
+    function initMap() {
+        var uluru = {lat: -25.363, lng: 131.044};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+
+
+    var $lightbox = $('#lightbox');
+    $('.thumbnail').click(function(){
+    $('.modal-body').empty();
+    
+    var title = $(this).parent('a').attr("title");
   	$('.modal-title').html(title);
   	$($(this).parents('div').html()).appendTo('.modal-body');
   	$('#myModal').modal({show:true});
-});
-      $('[data-target="#lightbox"]').on('click', function(event) {
+  });
+
+  $('[data-target="#lightbox"]').on('click', function(event) {
           var $img = $(this).find('img'), 
               src = $img.attr('src'),
               alt = $img.attr('alt'),
@@ -70,6 +87,7 @@ delete it to see just the drop cap */
   });
   </script>
 
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC35_2FnVuPd6D7AZxa077Lh_Jmfb29yg8&callback=initMap"> </script>
 
 <style type="text/css">
   
@@ -103,7 +121,7 @@ delete it to see just the drop cap */
   
       }
   
-    </style>
+</style>
 
 <!--fancybox-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-lightbox/0.7.0/bootstrap-lightbox.min.css">
@@ -153,9 +171,10 @@ delete it to see just the drop cap */
           
           <li class=""><a href="<?php echo base_url('visi_misi'); ?>"> <i class="fa fa-book fa-fw" aria-hidden="true"></i> &nbsp; Visi Misi</a></li>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Transaksi <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gallery <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="<?php echo base_url('simpanan'); ?>">Simpanan Wajib</a></li>
+              <li><a href="<?php echo base_url('foto'); ?>">Foto</a></li>
+              <li><a href="<?php echo base_url('foto'); ?>">Video</a></li>
             </ul>
           </li>
           
@@ -186,17 +205,9 @@ delete it to see just the drop cap */
   <div class="content_bottom">
     <div class="col-lg-8 col-md-8">
       <div class="content_bottom_left">
-        <br>
-        <br>
-        <br>
-        &nbsp;
-        &nbsp;
-        &nbsp;
-        <?php 
-        
+        <?php
         echo $this->load->view($content);
-        ?>
- 
+        ?> 
       </div>
     </div>
     <div class="col-lg-4 col-md-4">
@@ -208,31 +219,31 @@ delete it to see just the drop cap */
     <br>
       <div class="content_bottom_right">
         <div class="single_bottom_rightbar">
-          <h2>Recent Post</h2>
+          <h2>Kiriman Terkini</h2>
           <ul class="small_catg popular_catg wow fadeInDown">
             <li>
-              <div class="media wow fadeInDown"> <a href="#" class="media-left"><img alt="" src="images/112x112.jpg"> </a>
+              <div class="media wow fadeInDown"> <a href="#" class="media-left"><img alt="" src="<?php echo base_url('images/112x112.jpg'); ?>"> </a>
                 <div class="media-body">
-                  <h4 class="media-heading"><a href="#">Duis condimentum nunc pretium lobortis </a></h4>
-                  <p>Nunc tincidunt, elit non cursus euismod, lacus augue ornare metus, egestas imperdiet nulla nisl quis mauris. Suspendisse a pharetra </p>
+                  <h4 class="media-heading"><a href="#">Pembukaan Taman Ria Pada Akhir Agustus 2017 </a></h4>
+                  <p>Taman Ria dibuka untuk umum pada akhir agustus dan akan dimeriahkan oleh band papan atas seperti Wali,Ungu,Noah dan banyak lagi lainnya. </p>
                   <div class="post_commentbox"> <a href="#"><i class="fa fa-user"></i>Wpfreeware</a> <span><i class="fa fa-calendar"></i>6:49 AM</span> <a href="#"><i class="fa fa-tags"></i>Technology</a> </div>
                 </div>
               </div>
             </li>
             <li>
-              <div class="media wow fadeInDown"> <a href="#" class="media-left"><img alt="" src="images/112x112.jpg"> </a>
+              <div class="media wow fadeInDown"> <a href="#" class="media-left"><img alt="" src="<?php echo base_url('images/112x112.jpg'); ?>"> </a>
                 <div class="media-body">
-                  <h4 class="media-heading"><a href="#">Duis condimentum nunc pretium lobortis </a></h4>
-                  <p>Nunc tincidunt, elit non cursus euismod, lacus augue ornare metus, egestas imperdiet nulla nisl quis mauris. Suspendisse a pharetra </p>
+                  <h4 class="media-heading"><a href="#">Mesin Tempur Amerika Sangat Kuat! </a></h4>
+                  <p>Mesin Tempur Amerika dipamerkan untuk umum pada akhir agustus dan akan dimeriahkan oleh band papan atas seperti Wali,Ungu,Noah dan banyak lagi lainnya.  </p>
                   <div class="post_commentbox"> <a href="#"><i class="fa fa-user"></i>Wpfreeware</a> <span><i class="fa fa-calendar"></i>6:49 AM</span> <a href="#"><i class="fa fa-tags"></i>Technology</a> </div>
                 </div>
               </div>
             </li>
             <li>
-              <div class="media wow fadeInDown"> <a href="#" class="media-left"><img alt="" src="images/112x112.jpg"> </a>
+              <div class="media wow fadeInDown"> <a href="#" class="media-left"><img alt="" src="<?php echo base_url('images/112x112.jpg'); ?>"> </a>
                 <div class="media-body">
-                  <h4 class="media-heading"><a href="#">Duis condimentum nunc pretium lobortis </a></h4>
-                  <p>Nunc tincidunt, elit non cursus euismod, lacus augue ornare metus, egestas imperdiet nulla nisl quis mauris. Suspendisse a pharetra </p>
+                  <h4 class="media-heading"><a href="#">Kekuatan Negara Indonesia Makin Maju </a></h4>
+                  <p>Mega Super Ria dibuka untuk umum pada akhir agustus dan akan dimeriahkan oleh band papan atas seperti Wali,Ungu,Noah dan banyak lagi lainnya. </p>
                   <div class="post_commentbox"> <a href="#"><i class="fa fa-user"></i>Wpfreeware</a> <span><i class="fa fa-calendar"></i>6:49 AM</span> <a href="#"><i class="fa fa-tags"></i>Technology</a> </div>
                 </div>
               </div>
@@ -247,12 +258,10 @@ delete it to see just the drop cap */
 </section>
 </div>
 
+ 
 
 
-
-
-<footer id="footer">
-   
+<footer id="footer">   
   <div class="footer_bottom">
     <div class="container">
       <div class="row">

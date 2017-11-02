@@ -2,42 +2,113 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Simpanan extends Parent_controller {
+class Simpanan extends MY_Controller {
 
-  var $parsing_form_input = array('id','nama_simpanan','alamat','no_telp','email');
-  var $tablename = 'trans_pemasukan';
+  var $parsing_form_input = array('id','id_anggota','jumlah_bayar','tanggal_bayar','status');
+  var $tablename = 't_simpanan';
+ 
 
     public function __construct() {
         parent::__construct();
         $this->load->model('m_simpanan','m_sup');
 
-        if ($this->session->userdata('username') == '') {
-            redirect(base_url('login'));
-        }
+        // if ($this->session->userdata('username') == '') {
+        //     redirect(base_url('login'));
+        // }
     }
 
     public function index() {
-        $data['judul'] = $this->data['judul'];
-        
-        $data['listing'] = $this->db->query("select a.*,b.nama from trans_pemasukan a 
-        left join m_employee b on b.id = a.id_member
-        where a.id_member = '".$this->session->userdata('user_id')."' ")->result();
-        // echo $this->db->last_query();
+    
+        $data['listing'] = $this->m_sup->get_all_sum_trans()->result();
         // var_dump($data['listing']);
-        $data['parse_view'] = 'simpanan/simpanan_view';
-
-        $sql_user = $this->db->get_where('m_employee', array('id' => $this->session->userdata('user_id')))->row();
-        //var_dump($sql_user);
+        $data['title'] = $this->data['meta_title'];
+        $data['content'] = 'simpanan/simpanan_view';
+        
         //session
-        $data['pemilik'] = $sql_user->nama;
         $data['username'] = $this->session->userdata('username');
         $data['user_group'] = strtoupper(level_help($this->session->userdata('user_group')));
         $data['user_id'] = $this->session->userdata('user_id');
-
-        //var_dump($data);
-        $this->load->view('template', $data);
+        $this->load->view('template_admin', $data);
     }
 
+    public function simpanan_detail_view(){
+        $data['title'] = $this->data['meta_title'];
+        $data['content'] = 'simpanan/simpanan_detail_view';
+        $data['id'] = $this->uri->segment(3);
+        
+        $data['id_anggota'] =  $this->uri->segment(4);
+         
+        $data['name'] = $this->db->query("select * from m_anggota where id = '".$data['id_anggota']."' ")->row();
+        $data['listing'] = $this->db->query("select * from t_simpanan where  id_anggota = '".$data['id_anggota']."' ")->result();
+        //var_dump($data['listing']);
+        //session
+        $data['username'] = $this->session->userdata('username');
+        $data['user_group'] = strtoupper(level_help($this->session->userdata('user_group')));
+        $data['user_id'] = $this->session->userdata('user_id');
+        $this->load->view('template_admin', $data);
+    }
+
+    public function simpanan_detail_getdata(){
+        $dataid = $this->input->post('id');
+        $dataidanggota = $this->input->post('id_anggota');
+        //$hb = $dataid.'-'.$dataidanggota;
+        $sql = $this->db->query("select * from  t_simpanan where id = '$dataid' AND id_anggota = '$dataidanggota'")->row();
+        echo json_encode($sql);
+    }
+
+    public function simpanan_detail_delete(){
+        $id = $this->uri->segment(3);
+        $id_anggota = $this->uri->segment(4);
+        $qry = $this->db->query("delete from t_simpanan where id = '".$id."' AND id_anggota = '".$id_anggota."' ");
+        if($qry){
+            echo "<script language=javascript>
+            alert('Hapus Data Berhasil');
+            window.location='" . base_url('simpanan/simpanan_detail_view/'.$id.'/'.$id_anggota) . "';
+                </script>";
+        }
+    }
+
+    public function simpanan_detail_save(){
+        $datapos = $this->m_sup->array_from_post($this->parsing_form_input);
+        $idsimpan = $this->input->post('idsimpan');
+        if($datapos['id'] == '' || $datapos['id'] == NULL || empty($datapos['id'])){
+           $savesimpan = $this->m_sup->save_data($datapos,$this->tablename);
+           if($savesimpan){
+            echo "<script language=javascript>
+             alert('Simpan Data Berhasil');
+             window.location='" . base_url('simpanan/simpanan_detail_view/'.$idsimpan.'/'.$datapos['id_anggota']) . "';
+                 </script>";
+            } 
+
+        }else{
+
+            $saveupdate = $this->m_sup->save_data_update($datapos,$this->tablename);
+            if($saveupdate){
+                echo "<script language=javascript>
+                 alert('Ubah Data Berhasil');
+                 window.location='" . base_url('simpanan/simpanan_detail_view/'.$datapos['id'].'/'.$datapos['id_anggota']) . "';
+                     </script>";
+            }   
+        }
+ 
+       
+    }
+
+    public function simpanan_detail_save_edit(){
+        $datapos = $this->m_sup->array_from_post($this->parsing_form_input);
+        
+        $save = $this->m_sup->save_data_update($datapos,$this->tablename);
+        if($save){
+          echo "<script language=javascript>
+           alert('Ubah Data Berhasil');
+           window.location='" . base_url('simpanan/simpanan_detail_view/'.$datapos['id'].'/'.$datapos['id_anggota']) . "';
+               </script>";
+        }   
+    }
+
+    
+
+    
     public function store(){
         $data['judul'] = $this->data['judul'];
 
@@ -158,7 +229,7 @@ class Simpanan extends Parent_controller {
         $data = $this->input->post('valpeg');
         $this->db->where('id', $data);
         $data = $this->db->get('tb_simpanan')->row();
-        echo json_encode($data);
+        echo json_encode(simpanan_detail_getdata);
     }
 
     public function edit() {

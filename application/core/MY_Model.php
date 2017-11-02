@@ -15,14 +15,16 @@ class MY_Model extends CI_Model {
         parent::__construct();
     }
 
-    public function get($id = NULL) {
-        if ($id != NULL) {
-            $this->db->where('id', $id);
-            return $this->db->get($this->_table_name)->row();
-        } else {
-            return $this->db->get($this->_table_name)->result();
-        }
+    
+    public function get_new($list) {
+        $setting = new StdClass();
+            foreach ($list as $key => $column_order) {
+            $setting->$column_order = '';
+            }
+        return $setting;
     }
+         
+  
 
     public function array_from_post($fields) {
         $data = array();
@@ -37,39 +39,44 @@ class MY_Model extends CI_Model {
         return $this->db->get($this->_table_name)->row();
     }
 
-    public function save($data, $id = NULL) {
+    public function get($tablename,$pk,$id = NULL){
+        
+         if($id == NULL || $id == '') {
+           return $this->db->get($tablename);
+         }else{
+           $this->db->where($pk,$id);
+           return $this->db->get($tablename);
+         }
+       }
+
+    public function save($data,$tablename,$pk, $id = NULL) {
         if ($this->_timestamps == TRUE) {
             $now = date('Y-m-d H:i:s');
-            $id || $data['created'] = $now;
-            $data['modified'] = $now;
+            // $id || $data['created'] = $now;
+            // $data['modified'] = $now;
         }
 
-        if ($id === NULL) {
-            !isset($data[$this->_primary_key]) || $data[$this->_primary_key] = NULL;
+        if ($id === NULL || $id == '') {
+            !isset($pk) || $pk = NULL;
             $this->db->set($data);
-            $this->db->insert($this->_table_name);
+            $this->db->insert($tablename);
             $id = $this->db->insert_id();
+            //echo 'simpan';
         } else {
             $filter = $this->_primary_filter;
             $id = $filter($id);
             $this->db->set($data);
-            $this->db->where($this->_primary_key, $id);
-            $this->db->update($this->_table_name);
+            $this->db->where($pk, $id);
+            $this->db->update($tablename);
+            //echo 'update';
         }
-        return $id;
+        //return $id;
     }
 
-    public function delete($id) {
-        $filter = $this->_primary_filter;
-        $id = $filter($id);
-
-        if (!$id) {
-            return FALSE;
-        }
-
-        $this->db->where($this->_primary_key, $id);
-        $this->db->limit(1);
-        $this->db->delete($this->_table_name);
+    public function delete($pk,$tablename,$id) {
+      
+        $this->db->where($pk, $id);
+        return $this->db->delete($tablename);
     }
 
 }

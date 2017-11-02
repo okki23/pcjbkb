@@ -1,83 +1,47 @@
-<!-- begin row -->
-			<div class="row">
-			    <!-- begin col-12 -->
-			    <div class="col-md-12">
-			        <!-- begin panel -->
-                    <div class="panel panel-inverse">
-                        <div class="panel-heading">
-                            <div class="panel-heading-btn">
-                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
-                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
-                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
-                                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
-                            </div>
-                            <h4 class="panel-title">USER MANAGEMENT</h4>
-                        </div>
-                        <div class="panel-body">
-                            <div class="table-responsive">
 
-															<a href="<?php echo base_url('user/store');?>" class="btn btn-large btn-danger"> <i class="fa fa-plus-circle"></i> ADD </a>
-															<br>
-															&nbsp;
-																 <table id="data-table" class="table table-striped table-bordered">
-                                    <thead>
-                                        <tr>
-																						<th>No</th>
-                                            <th>Username</th>
-                                            <th>Pegawai</th>
-                                            <th>Level</th>
-                                            <th>Opsi</th>
-
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-																			<?php
-																			$no = 1;
-																			foreach ($listing as $row) {
-																			?>
-
-																			<tr>
-																					<td><?php echo $no; ?></td>
-																					<td><?php echo $row->username; ?></td>
-																					<td><?php echo $row->nama; ?></td>
-																					<td><?php echo strtoupper(level_help($row->level)); ?></td>
-																					<td>
-																						<a class="btn btn-warning" href="<?php echo base_url('user/store/'.$row->id); ?>">  <i class="fa fa-pencil"></i> Edit </a>   &nbsp;
-																						<a class="btn btn-danger" onclick="javascript:return confirm('Anda yakin ingin menghapus data ini?')" href="<?php echo base_url('user/delete/'.$row->id); ?>"> <i class="fa fa-trash"></i> Delete </a>
-																					</td>
-
-																			</tr>
-
-																			<?php
-																			$no++;
-																			}
-																			?>
-
-
-                                        <!--
-																				<tr class="odd gradeX">
-                                            <td>Trident</td>
-                                            <td>Internet Explorer 4.0</td>
-                                            <td>Win 95+</td>
-                                            <td>4</td>
-
-                                        </tr>
-                                        <tr class="even gradeC">
-                                            <td>Trident</td>
-                                            <td>Internet Explorer 5.0</td>
-                                            <td>Win 95+</td>
-                                            <td>5</td>
-
-                                        </tr>
-																			-->
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end panel -->
-                </div>
-                <!-- end col-12 -->
-            </div>
-            <!-- end row -->
+<div class="row">
+<div class="container">
+<h1> User    </h1>
+                
+         <br>
+         &nbsp;
+		<a href = "<?php echo base_url('user/store'); ?>" class="btn btn-primary" title="Add User"> <span class="glyphicon glyphicon-plus" aria-hidden="true"> </span> Add </a>
+		<br>
+		&nbsp;
+        <table id="example" class="table table-striped table-bordered" width="100%" cellspacing="0">
+<thead>
+  <tr>
+  
+  <th>No</th>
+  <th>Username</th>
+  <th>Pegawai</th>
+  <th>Level</th>
+  <th>Opsi</th>
+   
+  </tr>
+</thead>
+<tbody>
+<?php
+$no =1;
+foreach($listing as $key => $value){
+?>
+<tr>
+<td><?php echo $no; ?></td>
+<td><?php echo $value->username; ?></td>
+<td><?php echo $value->nama_asli; ?></td>
+<td><?php echo strtoupper(level_help($value->level)); ?></td>
+    <td>
+    <a href="<?php echo base_url('user/store/'.$value->id); ?>"> Edit </a> &nbsp;
+    <a href="<?php echo base_url('user/delete/'.$value->id); ?>" onclick="javascript:return confirm('Anda yakin ingin menghapus data ini?')" > Delete </a> &nbsp;    
+    </td>
+</tr>
+<?php
+$no++;
+}
+?>
+</tbody>
+</table>
+ 
+</div>
+</div> 
+ 
