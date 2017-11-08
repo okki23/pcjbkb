@@ -84,9 +84,9 @@ $no++;
       <div class="modal-body">
 
         <form action="<?php echo base_url('simpanan/simpanan_detail_save'); ?>"  method="POST"> 
-        <input type="text" name="id" id="idform">
-        <input type="text" name="idsimpan" value="<?php echo $id; ?>">
-        <input type="text" name="id_anggota" id="idformanggota" value="<?php echo $id_anggota; ?>">
+        <input type="hidden" name="id" id="idform">
+        <input type="hidden" name="idsimpan" value="<?php echo $id; ?>">
+        <input type="hidden" name="id_anggota" id="idformanggota" value="<?php echo $id_anggota; ?>">
         
         Jumlah Bayar : <input type="text" class="form-control" id="jumlah_bayar" name="jumlah_bayar" id="formatrp">
         Tanggal Bayar : <input type="text" class="form-control"  name="tanggal_bayar" id="dp1">

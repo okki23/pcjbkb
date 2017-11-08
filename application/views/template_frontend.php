@@ -5,19 +5,22 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="shortcut icon" href="images/pcjlogo.png" type="image/x-icon">
-<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="assets/css/animate.css">
-<link rel="stylesheet" type="text/css" href="assets/css/slick.css">
-<link rel="stylesheet" type="text/css" href="assets/css/theme.css">
-<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+<link rel="shortcut icon" href="<?php echo base_url('images/pcjlogo.png'); ?>" type="image/x-icon">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/font-awesome.min.css'); ?>">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/animate.css'); ?>">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/slick.css'); ?>">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/theme.css'); ?>">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/style.css'); ?>">
+<link href="<?php echo base_url('assets/css/dataTables.bootstrap.min.css'); ?>" rel="stylesheet">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-<script src="assets/js/jquery.min.js"></script> 
-<script src="assets/js/bootstrap.min.js"></script> 
-<script src="assets/js/wow.min.js"></script> 
-<script src="assets/js/slick.min.js"></script> 
-<script src="assets/js/custom.js"></script>
+<script src="<?php echo base_url('assets/js/jquery.min.js'); ?>"></script> 
+<script src="<?php echo base_url('assets/js/jquery.dataTables.min.js'); ?>"></script>
+<script src="<?php echo base_url('assets/js/dataTables.bootstrap.min.js'); ?>"></script>
+<script src="<?php echo base_url('assets/js/bootstrap.min.js'); ?>"></script> 
+<script src="<?php echo base_url('assets/js/wow.min.js'); ?>"></script> 
+<script src="<?php echo base_url('assets/js/slick.min.js'); ?>"></script> 
+<script src="<?php echo base_url('assets/js/custom.js'); ?>"></script>
 <style>
   article>p:nth-of-type(1):first-letter{ 
 	float: left; 
@@ -39,6 +42,10 @@ delete it to see just the drop cap */
 <script type="text/javascript">
  
   $(document).ready(function() {
+
+  
+    $('#example').DataTable();
+ 
 
     function initMap() {
         var uluru = {lat: -25.363, lng: 131.044};
@@ -145,7 +152,7 @@ delete it to see just the drop cap */
 
 <div id="navarea">
 <div class="table-responsive">
-<img src="images/newbann.png"  class="img-responsive" >
+<img src="<?php echo base_url('images/newbann.png'); ?>"  class="img-responsive" >
 <!-- 
   <table class="table" border="0" style="width:100%;">
           <tr>
@@ -173,8 +180,8 @@ delete it to see just the drop cap */
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gallery <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="<?php echo base_url('foto'); ?>">Foto</a></li>
-              <li><a href="<?php echo base_url('foto'); ?>">Video</a></li>
+              <li><a href="<?php echo base_url('foto_front'); ?>">Foto</a></li>
+              <li><a href="<?php echo base_url('video_front'); ?>">Video</a></li>
             </ul>
           </li>
           
@@ -221,33 +228,35 @@ delete it to see just the drop cap */
         <div class="single_bottom_rightbar">
           <h2>Kiriman Terkini</h2>
           <ul class="small_catg popular_catg wow fadeInDown">
-            <li>
-              <div class="media wow fadeInDown"> <a href="#" class="media-left"><img alt="" src="<?php echo base_url('images/112x112.jpg'); ?>"> </a>
-                <div class="media-body">
-                  <h4 class="media-heading"><a href="#">Pembukaan Taman Ria Pada Akhir Agustus 2017 </a></h4>
-                  <p>Taman Ria dibuka untuk umum pada akhir agustus dan akan dimeriahkan oleh band papan atas seperti Wali,Ungu,Noah dan banyak lagi lainnya. </p>
-                  <div class="post_commentbox"> <a href="#"><i class="fa fa-user"></i>Wpfreeware</a> <span><i class="fa fa-calendar"></i>6:49 AM</span> <a href="#"><i class="fa fa-tags"></i>Technology</a> </div>
+          
+          		<?php 
+              $no = $this->uri->segment('3') + 1;
+              foreach($list as $u){ 
+              
+              echo '<li>
+                <div class="media wow fadeInDown"> <a href='.base_url('article/article_detail/'.$u->id).' class="media-left"> </a>
+                  <div class="media-body">
+                    <h4 class="media-heading"><a href='.base_url('article/article_detail/'.$u->id).'>'.$u->title.' </a></h4>
+                    <p>'.preg_replace("/<img[^>]+\>/i", "", limit_to_numwords($u->body,30)).' </p>
+                    <div class="post_commentbox"> <a href="#"><i class="fa fa-user"></i>Administrator</a> <span><i class="fa fa-calendar"></i>'.tanggalan($u->pubdate).'</span> <a href="#"><i class="fa fa-tags"></i>'.$u->slug.'</a> </div>
+                  </div>
                 </div>
-              </div>
-            </li>
-            <li>
-              <div class="media wow fadeInDown"> <a href="#" class="media-left"><img alt="" src="<?php echo base_url('images/112x112.jpg'); ?>"> </a>
-                <div class="media-body">
-                  <h4 class="media-heading"><a href="#">Mesin Tempur Amerika Sangat Kuat! </a></h4>
-                  <p>Mesin Tempur Amerika dipamerkan untuk umum pada akhir agustus dan akan dimeriahkan oleh band papan atas seperti Wali,Ungu,Noah dan banyak lagi lainnya.  </p>
-                  <div class="post_commentbox"> <a href="#"><i class="fa fa-user"></i>Wpfreeware</a> <span><i class="fa fa-calendar"></i>6:49 AM</span> <a href="#"><i class="fa fa-tags"></i>Technology</a> </div>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="media wow fadeInDown"> <a href="#" class="media-left"><img alt="" src="<?php echo base_url('images/112x112.jpg'); ?>"> </a>
-                <div class="media-body">
-                  <h4 class="media-heading"><a href="#">Kekuatan Negara Indonesia Makin Maju </a></h4>
-                  <p>Mega Super Ria dibuka untuk umum pada akhir agustus dan akan dimeriahkan oleh band papan atas seperti Wali,Ungu,Noah dan banyak lagi lainnya. </p>
-                  <div class="post_commentbox"> <a href="#"><i class="fa fa-user"></i>Wpfreeware</a> <span><i class="fa fa-calendar"></i>6:49 AM</span> <a href="#"><i class="fa fa-tags"></i>Technology</a> </div>
-                </div>
-              </div>
-            </li>
+              </li>';
+              }
+              ?>
+            </ul>
+ 
+           
+          <div class="pagination_area">
+          <nav>
+              <?php 
+              echo $this->pagination->create_links();
+              ?>
+             
+          </nav>
+          </div>
+         
+           
           </ul>
         </div>
          

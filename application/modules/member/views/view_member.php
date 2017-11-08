@@ -2,10 +2,15 @@
 <div class="row">
 <div class="container">
 <h1> Member    </h1>
-                
+            
          <br>
          &nbsp;
-		<a href = "<?php echo base_url('member/edit'); ?>" class="btn btn-primary" title="Add User"> <span class="glyphicon glyphicon-plus" aria-hidden="true"> </span> Add </a>
+    <?php 
+  
+      echo '<a href = "'.base_url('member/edit').'" class="btn btn-primary" title="Add User"> <span class="glyphicon glyphicon-plus" aria-hidden="true"> </span> Add </a>';
+     
+    ?>
+    
 		<br>
 		&nbsp;
         <table id="example" class="table table-striped table-bordered" width="100%" cellspacing="0">

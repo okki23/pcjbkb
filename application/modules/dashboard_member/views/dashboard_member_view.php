@@ -5,9 +5,9 @@
 
     <!-- Main component for a primary marketing message or call to action -->
     <div class="jumbotron">
-      <h1>SELAMAT DATANG <?php echo $username; ?> ! </h1>
-      <p>Ini adalah portal member PCJ Bakaba</p>
-      <p>Semua hal yang berbau dengan konten member tersedia disini.</p>
+      <h2>SELAMAT DATANG, uwan/one : <?php echo $username; ?> ! </h2>
+      <p>Ini adalah website resmi Palanta Community Jakarta (PCJ), sebagai media informasi, transparansi, laporan keuangan dan kegiatan-kegiatan internal PCJ </p>
+      <p>Semua hal yang berkaitan dengan konten member tersedia disini.</p>
        
     </div>
 

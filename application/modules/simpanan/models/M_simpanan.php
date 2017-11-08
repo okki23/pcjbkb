@@ -14,10 +14,15 @@ class M_simpanan extends MY_Model {
 				return $setting;
 	}
 
+	/*
+	select a.id,a.id_anggota,a.nama_asli,b.tanggal_bayar,b.status,b.jumlah_bayar,sum(b.jumlah_bayar) as summary from m_anggota a
+left join t_simpanan b on b.id_anggota = a.id
+GROUP BY a.id
+ */
 	public function get_all_sum_trans(){
-		return $this->db->query("select a.id,a.id_anggota,b.nama_asli,a.tanggal_bayar,a.status,sum(a.jumlah_bayar) as summary from t_simpanan a 
-        left join m_anggota b on b.id = a.id_anggota
-        GROUP BY a.id_anggota");
+		return $this->db->query("select a.id,b.id_anggota,a.nama_asli,b.tanggal_bayar,b.status,b.jumlah_bayar,sum(b.jumlah_bayar) as summary from m_anggota a
+		left join t_simpanan b on b.id_anggota = a.id
+		GROUP BY a.id");
 	}
 
 	public function save_data($data,$tablename){

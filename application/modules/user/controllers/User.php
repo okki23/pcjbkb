@@ -1,11 +1,12 @@
 <?php
-
+date_default_timezone_set("Asia/Jakarta");
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class User extends MY_Controller {
 
-  var $parsing_form_input = array('id','username','password','email','id_pegawai','level');
+  var $parsing_form_input = array('id','username','password','id_pegawai','level');
   var $tablename = 'm_user';
+  var $pk = 'id';
 
     public function __construct() {
         parent::__construct();
@@ -77,7 +78,7 @@ class User extends MY_Controller {
 
     public function delete(){
       $idpost = $this->uri->segment(3);
-      $del = $this->m_umanagement->delete($idpost,$this->tablename);
+      $del = $this->m_umanagement->delete($this->pk,$this->tablename,$idpost);
 
       if($del){
         echo "<script language=javascript>

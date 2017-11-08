@@ -7,6 +7,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>" rel="stylesheet">
     <style type="text/css">
+    
+body {
+    background-image:    url('images/kelok9.jpg');
+    
+    background-size:     cover;                      /* <------ */
+    background-repeat:   no-repeat;
+    background-position: center center;              /* optional, center the image */
+}
+
         .form-signin
 {
     max-width: 330px;
@@ -92,7 +101,7 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-6 col-md-4 col-md-offset-4">
-            <h1 class="text-center login-title">Sign in to Admin Panel <?php echo $judul; ?></h1>
+            <h1 class="text-center login-title" style="color:#000; font-weight:bold;">Sign in to Admin Panel <?php echo $judul; ?></h1>
             <div class="account-wall">
                 <img class="profile-img" src="images/pcjlogo.png"
                     alt="">

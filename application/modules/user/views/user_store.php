@@ -22,13 +22,7 @@
                             <h4> <span class="label label-danger">  HARAP KOSONGKAN SAJA APABILA PASSWORD TIDAK INGIN DIRUBAH!!!
                                     </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">Email
-                        </label>
-                        <div class="col-md-9">
-                            <input type="text" name="email" value="<?php echo $parseform->email; ?>" class="form-control" placeholder="Email" />
-                        </div>
-                    </div>
+                   
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">Pegawai</label>
                                         <div class="col-md-9">
@@ -54,19 +48,11 @@
                                                 <option value = "">--Pilih--</option>
                                                 <option value = "1" <?php if ($parseform->level == '1') {
                                                     echo "selected=selected";
-                                                } ?> >Super Admin</option>
+                                                } ?> >Administrator</option>
                                                 <option value = "2" <?php if ($parseform->level == '2') {
                                                     echo "selected=selected";
-                                                } ?> >PPIC</option>
-                                                <option value = "3" <?php if ($parseform->level == '3') {
-                                                    echo "selected=selected";
-                                                } ?> >Admin Produksi</option>
-                                                <option value = "4" <?php if ($parseform->level == '4') {
-                                                    echo "selected=selected";
-                                                } ?> >Purchasing</option>
-                                                <option value = "5" <?php if ($parseform->level == '5') {
-                                                    echo "selected=selected";
-                                                } ?> >Supervisor</option>
+                                                } ?> >Member</option>
+                                                 
 
                                             </select>
                                         </div>

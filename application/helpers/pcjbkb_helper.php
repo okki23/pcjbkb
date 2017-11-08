@@ -3,19 +3,10 @@ if(!function_exists('level_help')){
 	function level_help($params){
 
 		if($params == 1){
-			$res = 'superadmin';
-		}else if($params == 2){
-			$res = 'ppic';
-		}else if($params == 3){
-			$res = 'admin produksi';
-		}else if($params == 4){
-			$res = 'purchasing';
-		}else if($params == 5){
-			$res = 'supervisor';
-		}else if($params == 6){
-			$res = 'admin warehouse';
-		}else{
-			$res = 'not found';
+			$res = 'administrator';
+		}else if($params != 1){
+			$res = 'member';
+		  
 		}
 
 		return $res;
@@ -88,6 +79,24 @@ if (!function_exists('tanggalan')) {
         return $hasil;
     }
 
+}
+if(!function_exists('limit_to_numwords')){
+    function limit_to_numwords($string, $numwords) {
+        $excerpt = explode(' ', $string, $numwords + 1);
+        if (count($excerpt) >= $numwords) {
+            array_pop($excerpt);
+        }
+        $excerpt = implode(' ', $excerpt);
+        return $excerpt;
+    }
+}
+
+ 
+
+if(!function_exists('e')){
+    function e($string) {
+        return htmlentities($string);
+    }
 }
 
 }

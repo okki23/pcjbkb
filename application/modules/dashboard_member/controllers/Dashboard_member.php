@@ -1,5 +1,5 @@
 <?php
-
+date_default_timezone_set("Asia/Jakarta");
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Dashboard_member extends MY_Controller  {
@@ -17,14 +17,7 @@ class Dashboard_member extends MY_Controller  {
     }
 
     public function index() {
-        // $data['judul'] = $this->data['judul'];
-        // $data['listing'] = $this->m_empp->get_all($id=NULL,$this->tablename)->result();
-        // $data['parse_view'] = 'dashboard/dashboard_view';
-
-        // //session
-        // $data['username'] = $this->session->userdata('username');
-        // $data['user_group'] = strtoupper(level_help($this->session->userdata('user_group')));
-        // $data['user_id'] = $this->session->userdata('user_id');
+        
 		$data['title'] = $this->data['meta_title'];
         $data['content'] = 'dashboard_member/dashboard_member_view';
         
@@ -32,19 +25,13 @@ class Dashboard_member extends MY_Controller  {
         $data['username'] = $this->session->userdata('username');
         $data['user_group'] = strtoupper(level_help($this->session->userdata('user_group')));
         $data['user_id'] = $this->session->userdata('user_id');
+        $data['simpanan'] = $this->db->query("select sum(jumlah_bayar) as totalsimpanan from t_simpanan where id_anggota = '".$data['user_id']."' ")->row();
+  
         $this->load->view('template_member', $data);
     }
 
     public function store(){
-        // $data['judul'] = $this->data['judul'];
-
-        // $id = $this->uri->segment(3);
-        // if($id == '' || empty($id) || $id == NULL){
-        //   $data['parseform'] = $this->m_empp->get_new($this->parsing_form_input);
-        // }else{
-        //   $data['parseform'] = $this->m_empp->get_all($id,$this->tablename)->row();
-
-        // }
+        
         $data['parse_view'] = 'dashboard/dashboard_store';
 
         //session
@@ -174,14 +161,14 @@ class Dashboard_member extends MY_Controller  {
 
         $datapos = array('nrp' => $this->input->post('nrp'),
             'nama' => $this->input->post('nama'),
-                'opt_nama' => $this->input->post('opt_nama'),
+            'opt_nama' => $this->input->post('opt_nama'),
             'id_dashboard' => $this->input->post('id_dashboard'),
             'seksi' => $this->input->post('seksi'),
             'risalah' => $this->input->post('risalah'),
             'tanggal' => $this->input->post('tanggal'),
             'no_reg' => $this->input->post('no_reg'),
             'tema_ip' => $this->input->post('tema_ip'),
-              'ksp' => $this->input->post('ksp'),
+            'ksp' => $this->input->post('ksp'),
             'fupload_ksp' => str_replace(" ", "_", $this->input->post('fupload_ksp')),
             'akibat' => $this->input->post('akibat'),
             'kstp' => $this->input->post('kstp'),
@@ -190,37 +177,7 @@ class Dashboard_member extends MY_Controller  {
             'fupload_standarisasi' => str_replace(" ", "_", $this->input->post('fupload_standarisasi')),
             'manfaat' => $this->input->post('manfaat')
         );
-        //var_dump($datapos);
-        //exit();
-        /*
-          $datapos = array('nrp'=> $this->input->post('nrp'),
-          'nama'=> $this->input->post('nama'),
-          'opt_nama'=> $this->input->post('opt_nama'),
-          'seksi'=> $this->input->post('seksi'),
-          'risalah'=> $this->input->post('risalah'),
-          'tanggal'=> $this->input->post('tanggal'),
-          'no_reg'=> $this->input->post('no_reg'),
-          'tema_ip'=> $this->input->post('tema_ip'),
-          'ksp'=> $this->input->post('ksp'),
-          'fupload_ksp'=> $this->input->post('fupload_ksp'),
-          'akibat'=> $this->input->post('akibat'),
-          'kstp'=> $this->input->post('kstp'),
-          'fupload_kstp'=> $this->input->post('fupload_kstp'),
-          'standarisasi'=> $this->input->post('standarisasi'),
-          'fupload_standarisasi'=> $this->input->post('fupload_standarisasi'),
-          'manfaat'=> $this->input->post('manfaat'),
-          'komentar'=> $this->input->post('komentar'),
-          'penilaian'=> $this->input->post('penilaian'),
-          'komentar_aprove'=> $this->input->post('komentar_aprove'),
-          'is_aprove_kasie'=> $this->input->post('is_aprove_kasie'),
-          'is_aprove_foreman'=> $this->input->post('is_aprove_foreman'),
-          'is_aprove_ahmic'=> $this->input->post('is_aprove_ahmic')
-          );
-
-         */
-        //print_r($datapos);
-        //exit();
-        //bagian upload file
+      
         $config['upload_path'] = "uploads/";
         $config['allowed_types'] = 'gif|bmp|jpg|jpeg|png';
         $config['max_size'] = 5000;

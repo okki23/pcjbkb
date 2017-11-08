@@ -1,5 +1,5 @@
 <?php
-
+date_default_timezone_set("Asia/Jakarta");
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Dashboard extends MY_Controller  {

@@ -7,6 +7,9 @@ class M_article extends MY_Model {
         parent::__construct();
     }
  
-   
+    public function get_by_id($id){
+        $this->db->where('id',$id);
+        return $this->db->get('articles');
+    }
 
 }

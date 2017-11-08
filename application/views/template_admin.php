@@ -58,21 +58,33 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Transaksi <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="<?php echo base_url('simpanan'); ?>">Simpanan Wajib</a></li>
+                <li><a href="<?php echo base_url('simpanan'); ?>">Iuran Wajib Anggota</a></li>
+                <li><a href="<?php echo base_url('donatur'); ?>">Donatur</a></li>
+                <li><a href="<?php echo base_url('upload_neraca'); ?>">Neraca</a></li>
               </ul>
             </li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Konten Website <span class="caret"></span></a>
               <ul class="dropdown-menu">
+                <li><a href="<?php echo base_url('home_backend'); ?>">Home</a></li>
                 <li><a href="<?php echo base_url('article'); ?>">Artikel</a></li>
                 <li><a href="<?php echo base_url('slider'); ?>">Slider</a></li>
-                <li><a href="<?php echo base_url('profile'); ?>">Profile</a></li>
-                <li><a href="<?php echo base_url('visi_misi'); ?>">Visi Misi</a></li>
+                <li><a href="<?php echo base_url('profile_backend'); ?>">Profile</a></li>
+                <li><a href="<?php echo base_url('visi_misi_backend'); ?>">Visi Misi</a></li>
                 <li><a href="<?php echo base_url('gallery_foto'); ?>">Gallery Foto</a></li>
                 <li><a href="<?php echo base_url('gallery_video'); ?>">Gallery Video</a></li>
-                <li><a href="<?php echo base_url('agenda'); ?>">Agenda Kegiatan</a></li>
+                <li><a href="<?php echo base_url('agenda_backend'); ?>">Agenda Kegiatan</a></li>
               </ul>
             </li>
+          
+             <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Kegiatan Internal <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Berita/Acara Internal</a></li>
+                  <li><a href="#">Foto Internal</a></li>
+                  <li><a href="#">Video Internal</a></li>
+                </ul>
+             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">

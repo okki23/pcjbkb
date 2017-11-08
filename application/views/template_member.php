@@ -12,12 +12,19 @@
     <title><?php echo $title; ?></title>
     <link rel="shortcut icon" href="images/pcjlogo.png" type="image/x-icon">
     <!-- Bootstrap core CSS -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-    <script src="assets/js/jquery.min.js"></script>
+    <link href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>" rel="stylesheet">
+    <script src="<?php echo base_url('assets/js/jquery.min.js'); ?>"></script>
+    <link href="<?php echo base_url('assets/css/dataTables.bootstrap.min.css'); ?>" rel="stylesheet">
+    <script src="<?php echo base_url('assets/js/jquery.dataTables.min.js'); ?>"></script>
+      <script src="<?php echo base_url('assets/js/dataTables.bootstrap.min.js'); ?>"></script>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="assets/js/bootstrap.min.js"></script>
-  
+    <script src="<?php echo base_url('assets/js/bootstrap.min.js');?>"></script>
+    <script type="text/javascript"> 
+    $(document).ready(function() {
+    $('#example').DataTable();
+} );
+    </script>
   </head>
 
   <body>
@@ -31,24 +38,38 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="<?php echo base_url('dashboard'); ?>"> Member <?php echo $title; ?></a>
+        <a class="navbar-brand" href="<?php echo base_url('dashboard_member'); ?>"> Member  </a>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-        
+        <li><a href="<?php echo base_url('list_member'); ?>">Daftar Anggota</a></li>
+      
+       
+        <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Kegiatan Internal <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Berita/Acara Internal</a></li>
+          <li><a href="#">Foto Internal</a></li>
+          <li><a href="#">Video Internal</a></li>
+        </ul>
+     </li>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Transaksi <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Laporan Keuangan <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Simpanan Wajib</a></li>
+              <li><a href="#">Iuran Wajib Anggota</a></li>
+              <li><a href="#">Donasi</a></li>
+              <li><a href="#">Neraca</a></li>
             </ul>
           </li>
+          
+          
   
         </ul>
         <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $username; ?> <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="<?php echo base_url('user'); ?>"> User Setting </a></li>
+          <li><a href="#"> Total Simpanan Anda Rp. <?php echo number_format($simpanan->totalsimpanan,"0"); ?> </a></li>
           <li><a href="<?php echo base_url('login/logout'); ?>"> Logout </a></li>
          
         </ul>

@@ -34,7 +34,7 @@ public function save_account($data,$id=NULL,$tablename){
 	}else{
 		if($data['password'] == NULL || empty($data['password']) || $data['password'] == ''){
 				$this->db->set('username',$data['username']);
-				$this->db->set('email',$data['email']);
+			 
 				$this->db->set('id_pegawai',$data['id_pegawai']);
 				$this->db->set('level',$data['level']);  
 				 

@@ -2,6 +2,11 @@
 <div class="row">
 <div class="container">
 <h1> Simpanan    </h1> 
+<br>
+ 
+<a href="" class="btn btn-primary"> <span class="glyphicon glyphicon-print" aria-hidden="true"> </span>  Print Rekapitulasi Simpanan</a>
+<br>
+&nbsp;
         <table id="example" class="table table-striped table-bordered" width="100%" cellspacing="0">
 <thead>
   <tr>
